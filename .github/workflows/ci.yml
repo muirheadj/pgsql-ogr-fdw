@@ -40,6 +40,7 @@ jobs:
         uname -a
         echo "/tmp/logbt-coredumps/core.%p.%E" | sudo tee /proc/sys/kernel/core_pattern
         echo "FROM postgis/postgis-build-env:${{ matrix.ci.tag }}" > Dockerfile
+        echo "RUN chown -R postgres:postgres /usr/local/pgsql" >> Dockerfile
         echo "ADD --chown=postgres:postgres . /src/postgis" >> Dockerfile
         echo "CMD bash ci/run_${{ matrix.ci.mode }}.sh" >> Dockerfile
         docker build -t ogr-fdw-test .
