@@ -16,5 +16,5 @@ su postgres -c "/usr/local/pgsql/bin/pg_ctl -c -l /tmp/logfile -o '-F' start"
 # Standard build
 su postgres -c make
 make install
-su postgres -c make installcheck
+su postgres -c "make installcheck"
 
