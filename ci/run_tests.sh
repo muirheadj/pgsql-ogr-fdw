@@ -18,4 +18,8 @@ su postgres -c "/usr/local/pgsql/bin/pg_ctl -c -l /tmp/logfile -o '-F' start"
 su postgres -c make
 make install
 su postgres -c "make installcheck"
+if [ $? -ne 0 ] ; then
+	ech "--------------------"
+	cat regression.diffs
+fi
 
