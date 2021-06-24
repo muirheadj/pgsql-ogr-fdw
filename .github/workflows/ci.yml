@@ -46,7 +46,7 @@ jobs:
 
     - name: 'Build & Test'
       run: |
-        docker run $ci_env --name ogr-fdw-test-${GITHUB_RUN_NUMBER} ogr-fdw-test
+        docker run --name ogr-fdw-test-${GITHUB_RUN_NUMBER} ogr-fdw-test
 
     - name: 'Clean Up Image'
       if: ${{ success() }}
