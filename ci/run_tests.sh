@@ -14,6 +14,8 @@ export CUNIT_VALGRIND_FLAGS="--leak-check=full --error-exitcode=1"
 su postgres -c "/usr/local/pgsql/bin/pg_ctl -c -l /tmp/logfile -o '-F' start"
 
 # Standard build
+find / -name pg_hba.conf
+exit
 su postgres -c make
 make install
 su postgres -c "make installcheck"
