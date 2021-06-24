@@ -14,9 +14,11 @@ export CUNIT_VALGRIND_FLAGS="--leak-check=full --error-exitcode=1"
 /usr/local/pgsql/bin/pg_ctl -c -l /tmp/logfile -o '-F' start
 
 # Standard build
-
-make
-make install
-make installcheck
+echo --------
+echo $USER
+echo --------
+#make
+#make install
+#make installcheck
 
 
