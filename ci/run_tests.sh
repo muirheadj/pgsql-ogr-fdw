@@ -16,7 +16,7 @@ export CUNIT_VALGRIND_FLAGS="--leak-check=full --error-exitcode=1"
 # Standard build
 
 make
-sudo make install
+make install
 make installcheck
 
 
