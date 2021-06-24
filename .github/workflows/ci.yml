@@ -41,13 +41,12 @@ jobs:
         echo "/tmp/logbt-coredumps/core.%p.%E" | sudo tee /proc/sys/kernel/core_pattern
         echo "FROM postgis/postgis-build-env:${{ matrix.ci.tag }}" > Dockerfile
         echo "ADD --chown=postgres:postgres . /src/postgis" >> Dockerfile
-        echo "RUN sudo usermod -aG sudo postgres" >> Dockerfile
         echo "CMD bash ci/run_${{ matrix.ci.mode }}.sh" >> Dockerfile
         docker build -t ogr-fdw-test .
 
     - name: 'Build & Test'
       run: |
-        docker run --name ogr-fdw-test-${GITHUB_RUN_NUMBER} ogr-fdw-test
+        docker run -u root --name ogr-fdw-test-${GITHUB_RUN_NUMBER} ogr-fdw-test
 
     - name: 'Clean Up Image'
       if: ${{ success() }}

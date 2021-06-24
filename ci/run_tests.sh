@@ -11,14 +11,10 @@ CFLAGS="-g -O2 -mtune=generic -fno-omit-frame-pointer ${WARNINGS} ${WARNINGS_DIS
 export CUNIT_WITH_VALGRIND=YES
 export CUNIT_VALGRIND_FLAGS="--leak-check=full --error-exitcode=1"
 
-/usr/local/pgsql/bin/pg_ctl -c -l /tmp/logfile -o '-F' start
+su - postgres -c "/usr/local/pgsql/bin/pg_ctl -c -l /tmp/logfile -o '-F' start"
 
 # Standard build
-echo --------
-whoami
-echo --------
-#make
-#make install
-#make installcheck
-
+su postgres -c make
+make install
+su postgres -c make installcheck
 
