@@ -22,14 +22,14 @@ GDAL_CONFIG = gdal-config
 GDAL_CFLAGS = $(shell $(GDAL_CONFIG) --cflags)
 GDAL_LIBS = $(shell $(GDAL_CONFIG) --libs)
 
-PG_CONFIG = pg_config
+PG_CONFIG = /usr/local/opt/postgresql/bin/pg_config
 REGRESS_OPTS = --encoding=UTF8
 
 PG_CPPFLAGS += $(GDAL_CFLAGS)
 LIBS += $(GDAL_LIBS)
 SHLIB_LINK := $(LIBS)
 
-PGXS := $(shell $(PG_CONFIG) --pgxs)
+PGXS = /usr/local/opt/postgresql/lib/postgresql/pgxs/src/makefiles/pgxs.mk
 include $(PGXS)
 
 PG_VERSION_NUM = $(shell awk '/PG_VERSION_NUM/ { print $$3 }' $(shell $(PG_CONFIG) --includedir-server)/pg_config.h)
